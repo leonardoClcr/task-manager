@@ -1,9 +1,11 @@
 import Sidebar from "./components/Sidebar";
+import Tasks from "./components/Tasks";
 
 const App = () => {
   return (
-    <div>
-      <Sidebar/>
+    <div className="flex gap-8">
+      <Sidebar />
+      <Tasks />
     </div>
   );
 };
