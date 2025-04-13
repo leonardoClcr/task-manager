@@ -1,7 +1,9 @@
-import CheckIcon from "../assets/icons/check.svg?react";
-import LoaderIcon from "../assets/icons/loader.svg?react";
-import DetailsIcon from "../assets/icons/details.svg?react";
-import Trashicon from "../assets/icons/trash.svg?react";
+import {
+  CheckIcon,
+  LoaderIcon,
+  DetailsIcon,
+  TrashIcon,
+} from "../assets/icons/index";
 import Button from "./Button";
 
 const TaskItem = ({ task, handleTaskCheckboxClick, handleDeleteClick }) => {
@@ -44,7 +46,7 @@ const TaskItem = ({ task, handleTaskCheckboxClick, handleDeleteClick }) => {
       </div>
       <div className="flex items-center gap-2">
         <Button variant="ghost" onClick={() => handleDeleteClick(task.id)}>
-          <Trashicon className="text-[#9A9C9F]" />
+          <TrashIcon className="text-[#9A9C9F]" />
         </Button>
         <a>
           <DetailsIcon />
