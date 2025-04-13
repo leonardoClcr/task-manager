@@ -31,6 +31,10 @@ const Tasks = () => {
     return task.time === "evening";
   });
 
+  const handleDialogClose = () => {
+    setAddTaskDialogIsOpen(false);
+  };
+
   const handleTaskDeleteClick = (taskId) => {
     const newTasks = tasks.filter((task) => task.id != taskId);
     setTasks(newTasks);
@@ -80,7 +84,10 @@ const Tasks = () => {
             Nova tarefa
           </Button>
 
-          <AddTaskDialog isOpen={addTaskDialogIsOpen} />
+          <AddTaskDialog
+            isOpen={addTaskDialogIsOpen}
+            handleClose={handleDialogClose}
+          />
         </div>
       </div>
 
