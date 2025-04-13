@@ -8,6 +8,7 @@ import MoonIcon from "../assets/icons/moon.svg?react";
 import { useState } from "react";
 import taskData from "../constants/tasks";
 import TaskItem from "./TaskItem";
+import { toast } from "sonner";
 
 const Tasks = () => {
   const [tasks, setTasks] = useState(taskData);
@@ -27,6 +28,7 @@ const Tasks = () => {
   const handleTaskDeleteClick = (taskId) => {
     const newTasks = tasks.filter((task) => task.id != taskId);
     setTasks(newTasks);
+    toast.success("Tarefa removida com sucesso");
   };
 
   const handleTaskCheckboxClick = (taskId) => {
