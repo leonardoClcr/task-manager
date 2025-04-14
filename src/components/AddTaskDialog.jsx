@@ -1,6 +1,6 @@
 import "./AddTaskDialog.css";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRef } from "react";
 import { createPortal } from "react-dom";
 import { CSSTransition } from "react-transition-group";
@@ -11,11 +11,18 @@ import Input from "./Input";
 import TimeSelect from "./TimeSelect";
 
 const AddTaskDialog = ({ isOpen, handleClose, handleAddTask }) => {
-  const [title, setTitle] = useState();
-  const [time, setTime] = useState();
-  const [description, setDescription] = useState();
+  const [title, setTitle] = useState("");
+  const [time, setTime] = useState("morning");
+  const [description, setDescription] = useState("");
 
   const nodeRef = useRef();
+
+  useEffect(() => {
+    if (!isOpen) {
+      setTitle("");
+      setDescription("");
+    }
+  }, [isOpen]);
 
   const handleSaveClick = () => {
     handleAddTask({
