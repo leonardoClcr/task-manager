@@ -14,6 +14,7 @@ const AddTaskDialog = ({ isOpen, handleClose, handleAddTask }) => {
   const [title, setTitle] = useState("");
   const [time, setTime] = useState("morning");
   const [description, setDescription] = useState("");
+  const [errors, setErrors] = useState([]);
 
   const nodeRef = useRef();
 
@@ -25,6 +26,36 @@ const AddTaskDialog = ({ isOpen, handleClose, handleAddTask }) => {
   }, [isOpen]);
 
   const handleSaveClick = () => {
+    const newErrors = [];
+
+    if (!title.trim()) {
+      newErrors.push({
+        inputName: "title",
+        message: "O titulo é obrigatório.",
+      });
+    }
+
+    if (!time.trim()) {
+      newErrors.push({
+        inputName: "time",
+        message: "O horário é obrigatório.",
+      });
+    }
+
+    if (!description.trim()) {
+      newErrors.push({
+        inputName: "description",
+        message: "A descrição é obrigatória.",
+      });
+    }
+
+    console.log(newErrors);
+
+    if (newErrors.length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
     handleAddTask({
       id: v4(),
       title,
@@ -35,6 +66,12 @@ const AddTaskDialog = ({ isOpen, handleClose, handleAddTask }) => {
 
     handleClose();
   };
+
+  const titleError = errors.find((error) => error.inputName === "title");
+  const timeError = errors.find((error) => error.inputName === "time");
+  const descriptionError = errors.find(
+    (error) => error.inputName === "description"
+  );
 
   return (
     <CSSTransition
@@ -68,11 +105,13 @@ const AddTaskDialog = ({ isOpen, handleClose, handleAddTask }) => {
                   placeholder="Insira o título da tarefa"
                   value={title}
                   onChange={(event) => setTitle(event.target.value)}
+                  error={titleError}
                 />
 
                 <TimeSelect
                   value={time}
                   onChange={(event) => setTime(event.target.value)}
+                  error={timeError}
                 />
 
                 <Input
@@ -81,6 +120,7 @@ const AddTaskDialog = ({ isOpen, handleClose, handleAddTask }) => {
                   placeholder="Descreva a tarefa"
                   value={description}
                   onChange={(event) => setDescription(event.target.value)}
+                  error={descriptionError}
                 />
 
                 {/* Buttons */}
