@@ -17,6 +17,7 @@ const AddTaskDialog = ({ isOpen, handleClose, handleAddTask }) => {
   const [errors, setErrors] = useState([]);
 
   const nodeRef = useRef();
+  const titleRef = useRef();
 
   useEffect(() => {
     if (!isOpen) {
@@ -89,10 +90,10 @@ const AddTaskDialog = ({ isOpen, handleClose, handleAddTask }) => {
           >
             {/* Dialog */}
             <div className="rounded-xl bg-white p-5 text-center shadow">
-              <h2 className="text-xl font-semibold text-[#35383E]">
+              <h2 className="text-xl font-semibold text-brand-dark-blue">
                 Nova Tarefa
               </h2>
-              <p className="mb-4 mt-1 text-sm text-[#9A9C9F]">
+              <p className="mb-4 mt-1 text-sm text-brand-text-gray">
                 Insira as informações abaixo
               </p>
 
@@ -105,6 +106,7 @@ const AddTaskDialog = ({ isOpen, handleClose, handleAddTask }) => {
                   value={title}
                   onChange={(event) => setTitle(event.target.value)}
                   error={titleError}
+                  ref={titleRef}
                 />
 
                 <TimeSelect
