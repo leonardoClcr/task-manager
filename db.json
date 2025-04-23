@@ -35,13 +35,6 @@
       "title": "Dormir cedo",
       "time": "evening",
       "status": "not_started"
-    },
-    {
-      "id": "a3c278bc-8114-4b48-ab08-40fb574f45dd",
-      "title": "TESTE",
-      "time": "evening",
-      "description": "dsds",
-      "status": "not_started"
     }
   ]
 }
