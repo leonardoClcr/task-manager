@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 import {
@@ -8,7 +8,6 @@ import {
   SunIcon,
   TrashIcon,
 } from "../assets/icons/index";
-import taskData from "../constants/tasks";
 import AddTaskDialog from "./AddTaskDialog";
 import Button from "./Button";
 import TaskItem from "./TaskItem";
@@ -17,7 +16,19 @@ import TaskSeparator from "./TaskSeparator";
 const Tasks = () => {
   const [addTaskDialogIsOpen, setAddTaskDialogIsOpen] = useState(false);
 
-  const [tasks, setTasks] = useState(taskData);
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      const response = await fetch("http://localhost:3000/tasks");
+
+      const data = await response.json();
+
+      setTasks(data);
+    };
+
+    fetchTasks();
+  }, []);
 
   const morningTasks = tasks.filter((task) => {
     return task.time === "morning";
