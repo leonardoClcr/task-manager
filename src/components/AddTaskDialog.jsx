@@ -120,12 +120,14 @@ const AddTaskDialog = ({ isOpen, handleClose, onSubmitSuccess }) => {
                   onChange={(event) => setTitle(event.target.value)}
                   error={titleError}
                   ref={titleRef}
+                  disabled={isLoading}
                 />
 
                 <TimeSelect
                   value={time}
                   onChange={(event) => setTime(event.target.value)}
                   error={timeError}
+                  disabled={isLoading}
                 />
 
                 <Input
@@ -135,6 +137,7 @@ const AddTaskDialog = ({ isOpen, handleClose, onSubmitSuccess }) => {
                   value={description}
                   onChange={(event) => setDescription(event.target.value)}
                   error={descriptionError}
+                  disabled={isLoading}
                 />
 
                 {/* Buttons */}
