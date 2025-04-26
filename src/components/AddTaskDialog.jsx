@@ -5,17 +5,20 @@ import { useEffect, useState } from "react";
 import { useRef } from "react";
 import { createPortal } from "react-dom";
 import { CSSTransition } from "react-transition-group";
+import { toast } from "sonner";
 import { v4 } from "uuid";
 
+import { LoaderIcon, TrashIcon } from "../assets/icons";
 import Button from "./Button";
 import Input from "./Input";
 import TimeSelect from "./TimeSelect";
 
-const AddTaskDialog = ({ isOpen, handleClose, handleAddTask }) => {
+const AddTaskDialog = ({ isOpen, handleClose, onSubmitSuccess }) => {
   const [title, setTitle] = useState("");
   const [time, setTime] = useState("morning");
   const [description, setDescription] = useState("");
   const [errors, setErrors] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const nodeRef = useRef();
   const titleRef = useRef();
@@ -27,7 +30,7 @@ const AddTaskDialog = ({ isOpen, handleClose, handleAddTask }) => {
     }
   }, [isOpen]);
 
-  const handleSaveClick = () => {
+  const handleSaveClick = async () => {
     const newErrors = [];
 
     if (!title.trim()) {
@@ -57,13 +60,22 @@ const AddTaskDialog = ({ isOpen, handleClose, handleAddTask }) => {
       return;
     }
 
-    handleAddTask({
-      id: v4(),
-      title,
-      time,
-      description,
-      status: "not_started",
+    const task = { id: v4(), title, time, description, status: "not_started" };
+    setIsLoading(true);
+    const response = await fetch("http://localhost:3000/tasks", {
+      method: "POST",
+      body: JSON.stringify(task),
     });
+
+    if (!response.ok) {
+      setIsLoading(false);
+      return toast.error(
+        "Erro ao adicionar a tarefa. Por favor tenta novamente."
+      );
+    }
+
+    onSubmitSuccess(task);
+    setIsLoading(false);
 
     handleClose();
   };
@@ -139,7 +151,9 @@ const AddTaskDialog = ({ isOpen, handleClose, handleAddTask }) => {
                     className="w-full"
                     size="large"
                     onClick={handleSaveClick}
+                    disabled={isLoading}
                   >
+                    {isLoading && <LoaderIcon className="mr-2 animate-spin" />}
                     Salvar
                   </Button>
                 </div>
