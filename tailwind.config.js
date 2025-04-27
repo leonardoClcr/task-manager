@@ -17,7 +17,7 @@ export default {
           border: "#F4F4F5",
           background: "#F8F8F8",
           process: "#FFAA04",
-          danger: "EF4444",
+          danger: "#EF4444",
         },
       },
     },

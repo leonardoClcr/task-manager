@@ -5,7 +5,7 @@ import Tasks from "./components/Tasks";
 
 const App = () => {
   return (
-    <div className="flex gap-8">
+    <div className="flex">
       <Toaster
         toastOptions={{
           style: {
