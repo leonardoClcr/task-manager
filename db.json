@@ -1,24 +1,17 @@
 {
   "tasks": [
     {
-      "id": "23d97484-7b66-4644-98f9-3e5c7f7d75b4",
-      "title": "Teste",
-      "time": "morning",
-      "description": "TesteTeste",
-      "status": "not_started"
-    },
-    {
-      "id": "2ce4ba97-f0a3-4c8e-abe2-077d52974644",
-      "title": "Estudar",
-      "time": "evening",
-      "description": "Recat",
-      "status": "not_started"
-    },
-    {
       "id": "82047b86-376e-4f89-958a-81d50652da31",
-      "title": "Treinar Peito",
-      "time": "evening",
+      "title": "Ler",
+      "time": "morning",
       "description": "Ir na academia e treinar peito",
+      "status": "not_started"
+    },
+    {
+      "id": "e068d51d-d231-457f-97b4-d8f76baeed47",
+      "title": "Costa e Bíceps",
+      "time": "morning",
+      "description": "Academia",
       "status": "not_started"
     }
   ]
