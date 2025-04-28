@@ -1,18 +1,3 @@
 {
-  "tasks": [
-    {
-      "id": "82047b86-376e-4f89-958a-81d50652da31",
-      "title": "Ler",
-      "time": "morning",
-      "description": "Ir na academia e treinar peito",
-      "status": "not_started"
-    },
-    {
-      "id": "e068d51d-d231-457f-97b4-d8f76baeed47",
-      "title": "Costa e Bíceps",
-      "time": "morning",
-      "description": "Academia",
-      "status": "not_started"
-    }
-  ]
+  "tasks": []
 }
